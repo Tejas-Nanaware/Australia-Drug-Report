@@ -1,5 +1,15 @@
 <?php
 	require 'connect.php';
+	$f_Name = isset($_POST['Name']) ? "%".$_POST['Name']."%" : "%%";
+	$f_Suburb = isset($_POST['Suburb']) ? "%".$_POST['Suburb']."%" : "%%";
+	$f_Contact = isset($_POST['Contact']) ? "%".$_POST['Contact']."%" : "%%";
+	$f_Website = isset($_POST['Website']) ? "%".$_POST['Website']."%" : "%%";
+	$f_Twitter = isset($_POST['Twitter']) ? "%".$_POST['Twitter']."%" : "%%";
+	$f_Social_Media = isset($_POST['Social_Media']) ? "%".$_POST['Social_Media']."%" : "%%";
+	$f_Cost = isset($_POST['Cost']) ? "%".$_POST['Cost']."%" : "%%";
+	$f_Nearest_Train_Station = isset($_POST['Nearest_train_station']) ? "%".$_POST['Nearest_train_station']."%"  : "%%";
+	$f_Category = isset($_POST['Category']) ? "%".$_POST['Category']."%" : "%%";
+	echo $f_Name."\t".$f_Suburb."\t".$f_Contact."\t".$f_Website."\t".$f_Twitter."\t".$f_Social_Media."\t".$f_Cost."\t".$f_Nearest_Train_Station."\t".$f_Category;
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,8 +22,94 @@
 </head>
 <body>
 <p><a href='index.php'>Home</a></p>
+
+<!-- filters -->
+<form method='POST' action='filteredreports.php'>
+	<div class='form-row'>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Name</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Name" name='Name'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Suburb</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Suburb" name='Suburb'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Contact</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Contact" name='Contact'>
+			</div>
+		</div>
+	</div>
+	<div class='form-row'>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Website</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Website" name='Website'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Twitter</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Twitter" name='Twitter'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Social Media</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Social Media" name='Social_Media'>
+			</div>
+		</div>
+	</div>
+	<div class='form-row'>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Cost</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Cost" name='Cost'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Nearest Train Station</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Nearest Train Station" name='Nearest_train_station'>
+			</div>
+		</div>
+		<div class='form-group col-md-3'>
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Category</span>
+				</div>
+			<input type="text" class="form-control" placeholder="Category" name='Category'>
+			</div>
+		</div>
+	</div>
+	<button class='btn btn-primary' type='submit'>Filter</button>
+</form>
+
+
+<!-- table display -->
 <?php
-    $result = mysqli_query($bd,"SELECT id,Name,What,Who,Address_1,Address_2,Suburb,Phone,Phone_2,Free_Call,Email,Website,Twitter,Social_Media,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,Public_Holidays,Cost,Tram_routes,Bus_routes,Nearest_train_station,Category_1,Category_2,Category_3,Category_4,Category_5,Category_6,Longitude,Latitude,Geocoded_Location FROM supportservices");
+    $result = mysqli_query($bd,"SELECT id,Name,What,Who,Address_1,Address_2,Suburb,Phone,Phone_2,Free_Call,Email,Website,Twitter,Social_Media,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,Public_Holidays,Cost,Tram_routes,Bus_routes,Nearest_train_station,Category_1,Category_2,Category_3,Category_4,Category_5,Category_6,Longitude,Latitude,Geocoded_Location FROM supportservices WHERE Name LIKE ".$f_Name." OR Suburb LIKE ".$f_Suburb." OR Free_Call LIKE ".$f_Contact." OR Website LIKE ".$f_Website." OR Twitter LIKE ".$f_Twitter." OR Social_Media LIKE ".$f_Social_Media." OR Cost LIKE ".$f_Cost." OR Nearest_train_station LIKE ".$f_Nearest_Train_Station." OR Category_1 LIKE ".$f_Category);
 	echo '<table class = "table table-striped table-responsive">
 		<thead>
 			<tr>
