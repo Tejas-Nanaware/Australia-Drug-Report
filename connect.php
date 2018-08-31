@@ -1,8 +1,9 @@
 <?php 
-    $mysql_hostname="localhost";
-    $mysql_user="root";
-    $mysql_password = "";
-    $mysql_database = "drugex";
-    $prefix = "";
+    require 'config.php';
+    $mysql_hostname=$mysql_hostname;
+    $mysql_user=$mysql_user;
+    $mysql_password = $mysql_password;
+    $mysql_database = $mysql_database;
+    $prefix = $prefix;
     $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password,$mysql_database) or die("Could not connect database");
  ?>
