@@ -9,7 +9,6 @@
 	$f_Cost = isset($_POST['Cost']) ? "%".$_POST['Cost']."%" : "%%";
 	$f_Nearest_Train_Station = isset($_POST['Nearest_train_station']) ? "%".$_POST['Nearest_train_station']."%"  : "%%";
 	$f_Category = isset($_POST['Category']) ? "%".$_POST['Category']."%" : "%%";
-	echo $f_Name."\t".$f_Suburb."\t".$f_Contact."\t".$f_Website."\t".$f_Twitter."\t".$f_Social_Media."\t".$f_Cost."\t".$f_Nearest_Train_Station."\t".$f_Category;
 ?>
 <!DOCTYPE html>
 <html>
@@ -102,15 +101,19 @@
 			<input type="text" class="form-control" placeholder="Category" name='Category'>
 			</div>
 		</div>
+		<div class='form-group col-md-3'>
+			<button class='btn btn-primary btn-sm' type='submit'>Filter</button>
+		</div>
 	</div>
-	<button class='btn btn-primary' type='submit'>Filter</button>
 </form>
 
 
 <!-- table display -->
 <?php
-    $result = mysqli_query($bd,"SELECT id,Name,What,Who,Address_1,Address_2,Suburb,Phone,Phone_2,Free_Call,Email,Website,Twitter,Social_Media,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,Public_Holidays,Cost,Tram_routes,Bus_routes,Nearest_train_station,Category_1,Category_2,Category_3,Category_4,Category_5,Category_6,Longitude,Latitude,Geocoded_Location FROM supportservices WHERE Name LIKE ".$f_Name." OR Suburb LIKE ".$f_Suburb." OR Free_Call LIKE ".$f_Contact." OR Website LIKE ".$f_Website." OR Twitter LIKE ".$f_Twitter." OR Social_Media LIKE ".$f_Social_Media." OR Cost LIKE ".$f_Cost." OR Nearest_train_station LIKE ".$f_Nearest_Train_Station." OR Category_1 LIKE ".$f_Category);
-	echo '<table class = "table table-striped table-responsive">
+	$query = 'SELECT * FROM supportservices WHERE Name LIKE "'.$f_Name.'" OR Suburb LIKE "'.$f_Suburb.'" OR Phone LIKE "'.$f_Contact.'" OR Website LIKE "'.$f_Website.'" OR Twitter LIKE "'.$f_Twitter.'" OR Social_Media LIKE "'.$f_Social_Media.'" OR Cost LIKE "'.$f_Cost.'" OR Nearest_train_station LIKE "'.$f_Nearest_Train_Station.'" OR Category_1 LIKE "'.$f_Category.'"';
+	$result = mysqli_query($bd,$query);
+	// $result = mysqli_query($bd,"SELECT * FROM supportservices WHERE Name LIKE ".$f_Name." OR Suburb LIKE ".$f_Suburb." OR Free_Call LIKE ".$f_Contact." OR Website LIKE ".$f_Website." OR Twitter LIKE ".$f_Twitter." OR Social_Media LIKE ".$f_Social_Media." OR Cost LIKE ".$f_Cost." OR Nearest_train_station LIKE ".$f_Nearest_Train_Station." OR Category_1 LIKE ".$f_Category);
+	echo '<table class = "table table-striped table-responsive" style="padding-top: 2%">
 		<thead>
 			<tr>
 			<th>Name</th>
