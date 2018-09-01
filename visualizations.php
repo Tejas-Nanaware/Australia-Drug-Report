@@ -1,5 +1,8 @@
 <?php
-	require 'connect.php';
+  require 'connect.php';
+  // Author: Tejas Nanaware
+	// E-mail: nanawaret@hotmail.com
+	// GitHub URL: https://github.com/Tejas-Nanaware
 ?>
 
 <!DOCTYPE html>

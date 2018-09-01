@@ -9,6 +9,9 @@
 	$f_Cost = isset($_POST['Cost']) ? "%".$_POST['Cost']."%" : "%%";
 	$f_Nearest_Train_Station = isset($_POST['Nearest_train_station']) ? "%".$_POST['Nearest_train_station']."%"  : "%%";
 	$f_Category = isset($_POST['Category']) ? "%".$_POST['Category']."%" : "%%";
+	// Author: Tejas Nanaware
+	// E-mail: nanawaret@hotmail.com
+	// GitHub URL: https://github.com/Tejas-Nanaware
 ?>
 <!DOCTYPE html>
 <html>
